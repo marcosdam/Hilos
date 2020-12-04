@@ -17,7 +17,6 @@ public class HiloRunnable implements Runnable{
         t.start();
     }
 
-
     // implementar método run()
     @Override
     public void run() {
