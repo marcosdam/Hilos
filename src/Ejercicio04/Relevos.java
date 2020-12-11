@@ -29,6 +29,9 @@ public class Relevos extends Thread{
     Terminé la carrera, soy el último
     Todos los hilos terminaron !!! */
 
+    // variable global posición
+    private static int posicion = 0;
+
     // sem
     private Semaphore semaphore;
 
@@ -59,7 +62,12 @@ public class Relevos extends Thread{
         }
         // 4. Pasa el relevo (libera el semáforo)
         System.out.println("Soy " + this.getName() + " y paso el testigo");
+        posicion++;
         semaphore.release();
+
+        if(posicion == 4){
+            System.out.println("Soy " + this.getName() + " y terminé el último");
+        }
 
     }
 }
