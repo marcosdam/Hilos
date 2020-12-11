@@ -10,7 +10,7 @@ public class Semaforo {
         Semaphore sem = new Semaphore(1);
 
         // Crear hilos
-        String frase = "Cyberpunk está guapísimo";
+        String frase = "Cyberpunk está guapísimo";  // Las tildes no las cuenta
         Vocal aVocal = new Vocal(sem, 'a', frase);
         Vocal eVocal = new Vocal(sem, 'e', frase);
         Vocal iVocal = new Vocal(sem, 'i', frase);
