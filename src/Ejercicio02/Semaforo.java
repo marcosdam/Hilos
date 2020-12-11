@@ -6,25 +6,36 @@ import java.util.concurrent.Semaphore;
 
 public class Semaforo {
     public static void main(String[] args) {
-        // Semáforo que permite sólo 1 hiloe n la zona crítica
+        // Semáforo que permite sólo 1 hilo en la zona crítica
         Semaphore sem = new Semaphore(1);
 
         // Crear hilos
-        HiloSemaforo hilo1 = new HiloSemaforo("hilo1", sem);
-        HiloSemaforo hilo2 = new HiloSemaforo("hilo2", sem);
-        HiloSemaforo hilo3 = new HiloSemaforo("hilo3", sem);
-        HiloSemaforo hilo4 = new HiloSemaforo("hilo4", sem);
-        HiloSemaforo hilo5 = new HiloSemaforo("hilo5", sem);
+        String frase = "Cyberpunk está guapísimo";
+        Vocal aVocal = new Vocal(sem, 'a', frase);
+        Vocal eVocal = new Vocal(sem, 'e', frase);
+        Vocal iVocal = new Vocal(sem, 'i', frase);
+        Vocal oVocal = new Vocal(sem, 'o', frase);
+        Vocal uVocal = new Vocal(sem, 'u', frase);
 
         // Iniciar hilos
-        hilo1.start();
-        hilo2.start();
-        hilo3.start();
-        hilo4.start();
-        hilo5.start();
+        aVocal.start();
+        eVocal.start();
+        iVocal.start();
+        oVocal.start();
+        uVocal.start();
+
+        try {
+            aVocal.join();
+            eVocal.join();
+            iVocal.join();
+            oVocal.join();
+            uVocal.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         // Una vez terminan puedo ver el resultado final de la variable global
-        System.out.println("Cantidad vocales: " + HiloSem.contador);
+        System.out.println("Número total de vocales: " + Vocal.numVocalTotal);
 
     }
 }
